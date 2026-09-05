@@ -68,7 +68,7 @@ ChoiceWin GetWinnerOfGame(int pleyerComputer, int pleyerUser){
     }
 
     else if(pleyerUser==ChoiceGame::paper){
-        if(pleyerComputer==1){
+        if(pleyerComputer==ChoiceGame::stone){
             return ChoiceWin::WinUsers;
         }
         else if(pleyerComputer==ChoiceGame::scissor){
