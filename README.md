@@ -1,5 +1,4 @@
-# Stone-Paper-Scissors-CPP
-# Rock-Paper-Scissors Game (C++) 🎮
+#Stone-Paper-Scissors Game (C++) 🎮
 
 ## Overview
 A console-based Rock-Paper-Scissors game built with C++. This project demonstrates the practical application of **Clean Code** principles, modularity, and structural software design.
