@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
-#include <ctime>
 
 
 using namespace std;
@@ -42,54 +41,45 @@ int RandomNumber(int From, int To){
 int InputOfComputer(){
 
         int computer=RandomNumber(1,3);
-        return computer;
+        return (ChoiceGame)computer;
 
-    }
+}
 
 int InputOfUser(){
 
     int user=Read("\nYour Choice : [1]:stone,  [2]:Paper,  [3]:Scissor  ? ");
-    return user;
+    return (ChoiceGame)user;
 
 }
 
 ChoiceWin GetWinnerOfGame(int pleyerComputer, int pleyerUser){
 
-    if(pleyerUser==ChoiceGame::stone){
-        if(pleyerComputer==ChoiceGame::paper){
-            return ChoiceWin::Wincomputer;
-        }
-        else if(pleyerComputer==ChoiceGame::scissor){
-            return ChoiceWin::WinUsers;
-        }
-        else {
-            return ChoiceWin::draw ;
-        }
+    if(pleyerComputer==pleyerUser){
+        return ChoiceWin::draw;
     }
-
-    else if(pleyerUser==ChoiceGame::paper){
-        if(pleyerComputer==ChoiceGame::stone){
-            return ChoiceWin::WinUsers;
-        }
-        else if(pleyerComputer==ChoiceGame::scissor){
-            return ChoiceWin::Wincomputer;
-        }
-        else {
-            return draw;
-        }
-    }
-
     else {
-        if(pleyerComputer==ChoiceGame::stone){
-            return ChoiceWin::Wincomputer;
-        }
-        else if(pleyerComputer==ChoiceGame::paper){
-            return ChoiceWin::WinUsers;
-        }
-        else{
-            return draw;
+        switch(pleyerUser){
+        case ChoiceGame::stone :
+                if(pleyerComputer==ChoiceGame::paper){
+                    return ChoiceWin::Wincomputer;
+                    break;
+                }
+
+
+        case ChoiceGame::paper:
+                if(pleyerComputer==ChoiceGame::scissor){
+                    return ChoiceWin::Wincomputer;
+                    break;
+                }
+
+        case ChoiceGame::scissor :
+                if(pleyerComputer==ChoiceGame::stone){
+                    return ChoiceWin::Wincomputer;
+                    break;
+                }
         }
     }
+    return ChoiceWin::WinUsers;
 }
 
 string GetNameGame(int Value){
@@ -107,8 +97,11 @@ string GetNameGame(int Value){
 
 void PrintHeader(int pleyerComputer, int pleyerUser,stGameResults &won){
 
+
     cout << "Player1 choice : " << GetNameGame(pleyerUser) << endl ;
     cout << "computer Choice : " << GetNameGame(pleyerComputer) << endl;
+
+
     ChoiceWin GetWinner=GetWinnerOfGame(pleyerComputer,pleyerUser);
     if(GetWinner==ChoiceWin::Wincomputer){
             system("color 4f");
@@ -145,7 +138,9 @@ void ManyRounds(stGameResults &won){
 
 
     won.GameRounds=Read("How many Rounds 1 to 10 ? ");
+
     for(int i = 1 ; i <= won.GameRounds ; i++){
+
         cout << "________________Round[" << i << "]________________" << endl ;
         int Computer=InputOfComputer();
         int User=InputOfUser();
